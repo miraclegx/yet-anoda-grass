@@ -1,0 +1,25 @@
+local count = 4
+
+function init(self)
+	self.timer = 0
+	--self.test_grass = factory.create("#factory")
+	--self.test_grass_model = msg.url(nil, self.test_grass, "model")
+	self.grasses = {}
+	for i=1,count do
+		local position = vmath.vector3(i*0.5,0,-5.0)
+		local grass = factory.create("#factory",position)
+		local grass_url = msg.url(nil,grass,"model")
+		table.insert(self.grasses,grass_url)
+	end
+end
+
+function update(self, dt)
+	self.timer = self.timer + dt
+	for i,v in pairs(self.grasses) do
+		--local timer = self.timer + math.random(1,2)
+		go.set(v, "time", vmath.vector4(self.timer,0,0,0))
+	end
+	--go.set(self.test_grass_model, "time", vmath.vector4(self.timer,0,0,0))
+	--go.set("#model", "time", vmath.vector4(self.timer,0,0,0))
+	--print(self.timer)
+end
