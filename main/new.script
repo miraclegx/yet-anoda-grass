@@ -1,16 +1,31 @@
 local count = 4
+go.property("grid_dim", vmath.vector3(100,5,50))
+local spacing = 2
 
 function init(self)
 	self.timer = 0
 	--self.test_grass = factory.create("#factory")
 	--self.test_grass_model = msg.url(nil, self.test_grass, "model")
 	self.grasses = {}
-	for i=1,count do
-		local position = vmath.vector3(i*0.5,0,-5.0)
-		local grass = factory.create("#factory",position)
-		local grass_url = msg.url(nil,grass,"model")
-		table.insert(self.grasses,grass_url)
-	end
+
+	-- for i=1,count do
+	-- 	local position = vmath.vector3(i*0.5,0,-5.0)
+	-- 	local grass = factory.create("#factory",position)
+	-- 	local grass_url = msg.url(nil,grass,"model")
+	-- 	table.insert(self.grasses,grass_url)
+	-- end
+	
+	for x=1, self.grid_dim.x do
+		for y=1, self.grid_dim.y do
+			for z=1,self.grid_dim.z do
+				local position = vmath.vector3(x*0.5,0,-z)
+
+				local grass = factory.create("#factory",position)
+				local grass_url = msg.url(nil,grass,"model")
+				table.insert(self.grasses,grass_url)
+			end
+		end
+	end 
 end
 
 function update(self, dt)

@@ -27,3 +27,10 @@ title = yet another grass
 clear_color_red = 0.5
 clear_color_blue = 1.0
 
+[model]
+split_meshes = 1
+max_count = 90480
+
+[collection]
+max_instances = 40960
+
