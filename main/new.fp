@@ -12,6 +12,7 @@ uniform mediump sampler2D tex0;
 uniform fs_uniforms
 {
 	mediump vec4 tint;
+	vec4 top_color;
 };
 
 void main()
@@ -26,9 +27,10 @@ void main()
 	diff_light = max(dot(var_normal,diff_light), 0.0) + ambient_light;
 	diff_light = clamp(diff_light, 0.0, 1.0);
 
-	//out_fragColor = vec4(color.rgb*diff_light,1.0);
-	//out_fragColor = vec4(color.rgb,1.0);
-	out_fragColor = vec4(1.0*var_texcoord0.y,0.0*var_texcoord0.y,1.0*var_texcoord0.y,1.0);
-	//out_fragColor = vec4(0.0,var_texcoord0.y,0.0,1.0);
+	vec3 base_color = vec3(0.2,0.4,0.9);
+	//vec3 top_color = vec3(0.0,1.0,0.3);
+	
+	//out_fragColor = vec4(mix(base_color,top_color,var_texcoord0.y),1.0);
+	out_fragColor = vec4(mix(base_color,top_color.xyz,var_texcoord0.y),1.0);
 }
 

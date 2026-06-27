@@ -1,5 +1,6 @@
+math.randomseed(os.time())
 local count = 4
-go.property("grid_dim", vmath.vector3(50,5,50))
+go.property("grid_dim", vmath.vector3(70,5,50))
 local spacing = 2
 
 function init(self)
@@ -17,12 +18,13 @@ function init(self)
 
 	for x=1, self.grid_dim.x do
 			for z=1,self.grid_dim.z do
-				local position = vmath.vector3(x*0.5,0,-z)
-				local rotation = math.random(0,180)
+				local position = vmath.vector3(x*0.1,0,-z)
+				local rotation = math.random(0,90)
 				rotation = vmath.quat_rotation_x(math.rad(rotation))
 				
 				local grass = factory.create("#factory",position,vmath.quat(rotation))
 				local grass_url = msg.url(nil,grass,"model")
+				go.set(grass_url, "top_color", vmath.vector4(0.0,1.0,math.random(0.3,0.9),0.0))
 				table.insert(self.grasses,grass_url)
 			end
 	end 
