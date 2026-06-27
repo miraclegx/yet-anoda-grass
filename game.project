@@ -8,7 +8,7 @@ shared_state = 1
 width = 960
 height = 640
 high_dpi = 1
-vsync = 1
+vsync = 0
 
 [android]
 input_method = HiddenInputField
@@ -29,8 +29,8 @@ clear_color_blue = 1.0
 
 [model]
 split_meshes = 1
-max_count = 90480
+max_count = 30000
 
 [collection]
-max_instances = 40960
+max_instances = 32765
 

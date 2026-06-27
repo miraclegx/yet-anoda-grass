@@ -14,19 +14,32 @@ function init(self)
 	-- 	local grass_url = msg.url(nil,grass,"model")
 	-- 	table.insert(self.grasses,grass_url)
 	-- end
-	
+
 	for x=1, self.grid_dim.x do
-		for y=1, self.grid_dim.y do
 			for z=1,self.grid_dim.z do
 				local position = vmath.vector3(x*0.5,0,-z)
-
-				local grass = factory.create("#factory",position)
+				local rotation = math.random(0,180)
+				rotation = vmath.quat_rotation_x(math.rad(rotation))
+				
+				local grass = factory.create("#factory",position,vmath.quat(rotation))
 				local grass_url = msg.url(nil,grass,"model")
 				table.insert(self.grasses,grass_url)
 			end
-		end
 	end 
 end
+	
+-- 	for x=1, self.grid_dim.x do
+-- 		for y=1, self.grid_dim.y do
+-- 			for z=1,self.grid_dim.z do
+-- 				local position = vmath.vector3(x*0.5,0,-z)
+-- 
+-- 				local grass = factory.create("#factory",position)
+-- 				local grass_url = msg.url(nil,grass,"model")
+-- 				table.insert(self.grasses,grass_url)
+-- 			end
+-- 		end
+-- 	end 
+-- end
 
 function update(self, dt)
 	self.timer = self.timer + dt
