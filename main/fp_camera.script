@@ -1,5 +1,7 @@
 local camera_sensitivity = 0.15 -- miracle see.... miracle do :)
 local move_speed = 0.5
+local max_pitch = 50
+local min_pitch = 50
 
 function init(self)
 	msg.post(".", "acquire_input_focus")
@@ -20,6 +22,10 @@ function final(self)
 end
 
 function update(self, dt)
+	-- pitch clamping
+	if self.pitch > max_pitch then self.pitch = max_pitch end
+	if self.pitch < -min_pitch then self.pitch = -min_pitch end
+	
 	local current_position = go.get_position()
 	current_position.z = current_position.z +(self.move_z*10) * dt
 	current_position.x = current_position.x +(self.move_x*10) * dt
@@ -52,8 +58,10 @@ end
 
 function on_input(self, action_id, action)
 	if self.moused_locked == false and (action.dx or action.dy) then
+		print("camera yaw "..self.yaw)
+		print("camera pitch "..self.pitch)
 		self.yaw = self.yaw - (action.dx or 0) * camera_sensitivity
-		self.pitch = self.pitch - (action.dy or 0) * camera_sensitivity
+		self.pitch = self.pitch + (action.dy or 0) * camera_sensitivity
 	end
 
 	if action.pressed then
