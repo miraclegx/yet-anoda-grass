@@ -1,5 +1,5 @@
 local count = 4
-go.property("grid_dim", vmath.vector3(100,5,50))
+go.property("grid_dim", vmath.vector3(50,5,50))
 local spacing = 2
 
 function init(self)

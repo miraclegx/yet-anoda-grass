@@ -1,4 +1,5 @@
 local camera_sensitivity = 0.15 -- miracle see.... miracle do :)
+local move_speed = 0.5
 
 function init(self)
 	msg.post(".", "acquire_input_focus")
@@ -7,6 +8,9 @@ function init(self)
 	self.pitch = go.get(".", "euler.x")
 
 	self.mouse_locked = true
+
+	self.move_z = 0
+	self.move_x = 0
 end
 
 function final(self)
@@ -16,6 +20,12 @@ function final(self)
 end
 
 function update(self, dt)
+	local current_position = go.get_position()
+	current_position.z = current_position.z +(self.move_z*10) * dt
+	current_position.x = current_position.x +(self.move_x*10) * dt
+	go.set_position(current_position)
+	
+	-- rotate the camera
 	go.set(".", "euler", vmath.vector3(self.pitch,self.yaw,0))
 end
 
@@ -48,6 +58,31 @@ function on_input(self, action_id, action)
 
 	if action.pressed then
 		self.moused_locked = not self.moused_locked
+	end
+
+	if action_id == hash("up") then
+		self.move_z = -1
+		if action.released then
+			self.move_z = 0
+		end
+	end
+	if action_id == hash("back") then
+		self.move_z = 1
+		if action.released then
+			self.move_z = 0
+		end
+	end
+	if action_id == hash("left") then
+		self.move_x = -1
+		if action.released then
+			self.move_x = 0
+		end
+	end
+	if action_id == hash("right") then
+		self.move_x = 1
+		if action.released then
+			self.move_x = 0
+		end
 	end
 end
 
