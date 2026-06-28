@@ -1,0 +1,19 @@
+#version 140
+
+in vec3 position;
+out vec3 var_texcoord0;
+
+uniform v_uniforms{
+	uniform mat4 view_proj;
+	uniform mat4 world;
+};
+
+void main(){
+	// i dont know what i'm doin, but i know what i am showing
+	mat4 wvp = world * view_proj;
+	vec4 wvp_pos = wvp * vec4(position,1.0);
+
+	var_texcoord0 = position;
+
+	gl_Position = wvp_pos.xyww;
+}

@@ -1,6 +1,6 @@
 math.randomseed(os.time())
 local count = 4
-go.property("grid_dim", vmath.vector3(70,5,50))
+go.property("grid_dim", vmath.vector3(60,5,50))
 local spacing = 2
 
 function init(self)

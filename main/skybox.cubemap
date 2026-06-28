@@ -1,0 +1,6 @@
+right: "/main/px.png"
+left: "/main/nx.png"
+top: "/main/py.png"
+bottom: "/main/ny.png"
+front: "/main/pz.png"
+back: "/main/nz.png"
