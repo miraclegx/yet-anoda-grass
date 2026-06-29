@@ -18,7 +18,7 @@ function init(self)
 
 	for x=1, self.grid_dim.x do
 			for z=1,self.grid_dim.z do
-				local position = vmath.vector3(x*0.1,0,-z)
+				local position = vmath.vector3(x*0.2,0,-z)
 				local rotation = math.random(0,90)
 				rotation = vmath.quat_rotation_x(math.rad(rotation))
 				
